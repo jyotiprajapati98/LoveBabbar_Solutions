@@ -1,5 +1,5 @@
 /*
-max subarray from array
+Largest Sum of Contigouse Sub Array
 */
 #include <limits.h>
 #include <iostream>
