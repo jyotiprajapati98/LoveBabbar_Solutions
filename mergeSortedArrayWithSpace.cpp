@@ -1,4 +1,4 @@
-/*Merge two sorted arrays using extra space */
+/*Merge two sorted arrays using extra space*/
 #include<bits/stdc++.h>
 using namespace std;
 void mergeArray(long long a[], long long b[], int n, int m){
