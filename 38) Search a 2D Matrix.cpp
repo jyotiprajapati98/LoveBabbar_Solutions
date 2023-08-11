@@ -1,38 +1,29 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        int top = 0;
-        int bot = matrix.size() - 1;
+        //Solve with binary search
+        
+        int row = matrix.size();
+        int col = matrix[0].size();
+        
+        //for binary search
+        int low = 0, high = row*col - 1;
 
-        while (top <= bot) {
-            int mid = (top + bot) / 2;
+        while(low<= high){
+            int mid = low + (high - low)/2;
+            //to get the value of mid element
+            int mVal = matrix[mid/col][mid%col];
 
-            if (matrix[mid][0] < target && matrix[mid][matrix[mid].size() - 1] > target) {
-                break;
-            } else if (matrix[mid][0] > target) {
-                bot = mid - 1;
-            } else {
-                top = mid + 1;
-            }
-        }
-
-        int row = (top + bot) / 2;
-
-        int left = 0;
-        int right = matrix[row].size() - 1;
-
-        while (left <= right) {
-            int mid = (left + right) / 2;
-
-            if (matrix[row][mid] == target) {
+            //check the value is equal to target or not
+            if(mVal==target){
                 return true;
-            } else if (matrix[row][mid] > target) {
-                right = mid - 1;
-            } else {
-                left = mid + 1;
+            }else if(mVal<target){
+                low = mid+1;
+            }else{
+                high = mid - 1;
             }
         }
-
         return false;
+
     }
 };
