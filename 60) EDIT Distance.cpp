@@ -1,9 +1,5 @@
-//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
-
-// } Driver Code Ends
-
 class Solution{
     public:
     int editDistance(string s, string t){
@@ -44,8 +40,6 @@ class Solution{
        return arr[n][m];
     }
 };
-
-//{ Driver Code Starts.
 int main() {
     int T;
     cin >> T;
@@ -58,5 +52,3 @@ int main() {
     }
     return 0;
 }
-
-// } Driver Code Ends
