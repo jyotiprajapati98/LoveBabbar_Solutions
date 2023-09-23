@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define d 256
-
 void find(char pat[], char txt[], int q)
 {
 	int M = strlen(pat);
