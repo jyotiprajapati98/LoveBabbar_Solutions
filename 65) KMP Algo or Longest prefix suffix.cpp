@@ -1,53 +1,75 @@
-// CPP program to find length of the
-// longest prefix which is also suffix
+//{ Driver Code Starts
+//Initial template for C++ 
+ 
 #include <bits/stdc++.h>
 using namespace std;
 
-// Function to find largest prefix
-// which is also a suffix
-int largest_prefix_suffix(const std::string
-									&str)
-{
 
-int n = str.length();
+// } Driver Code Ends
 
-// if n is less than 2
-if(n < 2) {
-	return 0;
-}
+//User function template for C++
 
-int len = 0;
-int i = 1;
+class Solution{
+  public:		
+	int lps(string s) {
+	    int n = s.length();
+	    
+	    int lps[n];
+	    //initialize with zero
+	    lps[0] = 0;
+	    
+	    int plen = 0;
+	    
+	    int i = plen + 1;
 
-// Iterate i till n
-while(i < n)
-{
-	
-	// If str[i] is equal to
-	// str[len]
-	if(str[i] == str[len])
-	{
-	++len;
-	++i;
+	    
+	    //traverse over loop
+	    while(i<n){
+	        if(s[i]==s[plen]){
+	            plen++;
+	            lps[i] = plen;
+	            i++;
+	        }else{
+	            if(plen != 0){
+	                plen = lps[plen-1];
+	            }else{
+	                //if len == 0
+	                lps[i] = 0;
+	                i++;
+	            }
+	        }
+	    }
+	    
+	    //return result
+	    //int result = lps[n-1];
+	    return lps[n-1];
+	    
 	}
-	else
-	{
-	i = i - len + 1;
-	len = 0;
-	}
-}
+};
 
-return len>n/2? len/2:len;
+//{ Driver Code Starts.
 
-}
-
-// Driver code
-int main()
+int main() 
 {
-	
-string s = "blablabla";
+   
 
-// Function Call
-cout << largest_prefix_suffix(s);
-return 0;
+   	ios_base::sync_with_stdio(0);
+    cin.tie(NULL);
+    cout.tie(NULL);
+   
+   	int t;
+   	cin >> t;
+   	while(t--)
+   	{
+   		string str;
+   		cin >> str;
+
+   		Solution ob;
+
+   		cout << ob.lps(str) << "\n";
+   	}
+
+    return 0;
 }
+
+// } Driver Code Ends
