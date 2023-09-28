@@ -34,11 +34,6 @@ class Solution {
     }
 */
 int romanToDecimal(string s){
-	// declare two variables first
-	// will calculate the number
-	// and second will help
-	// in iterating through the
-	// string character-wise
 	int ans = 0, i;
 	for (i = 0; i < s.size() - 1; i++) {
 		if (s[i] == 'I' && s[i + 1] == 'V') {
@@ -71,8 +66,6 @@ int romanToDecimal(string s){
 			i++;
 			continue;
 		}
-		// till this we checked all the category like
-		// 4,9,40,90 etc.
 		else if (s[i] == 'I')
 			ans += 1;
 		else if (s[i] == 'V')
@@ -110,7 +103,6 @@ int romanToDecimal(string s){
 }
 
 int main(){
-	// Considering inputs given are valid
 	string str = "MCMIV";
 	cout<<"decimal number is "<<str<<"\n";
 	cout << "Roman number is "<< romanToDecimal(str) << endl;
