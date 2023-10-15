@@ -1,54 +1,74 @@
-#include <bits/stdc++.h>
+//Transform One String to Another using 
+//Minimum Number of Given Operation
+#include <iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
-int transform(string A, string B)
-{
-	if (A.length() != B.length()) {
-		return -1;
-	}
-
-	// create a map to store the frequency of characters in string A
-	unordered_map<char, int> m;
-	int n = A.length();
-	for (int i = 0; i < n; i++) {
-		if (m.count(A[i])) // if the character already exists in the map
-			m[A[i]]++;	 // increment its frequency
-		else
-			m[A[i]] = 1; // add the character to the map with a frequency of 1
-	}
-
-	// subtract the frequency of characters in string B from the map
-	for (int i = 0; i < n; i++) {
-		if (m.count(B[i]))
-			m[B[i]]--;
-	}
-
-	// check if all the frequencies in the map are 0, indicating equal frequency of characters in both strings
-	for (auto it : m) {
-		if (it.second != 0) // if frequency is not zero
-			return -1;	 // strings cannot be transformed into each other, return -1
-	}
-
-	// calculate the minimum number of operations required to transform string A into string B
-	int i = n - 1, j = n - 1;
-	int res = 0;
-	while (i >= 0 && j >= 0) {
-		while (i >= 0 && A[i] != B[j]) {
-			res++; // increment the number of operations required
-			i--;	 // move the pointer i to the left
-		}
-		i--;
-		j--;
-	}
-return res; // returning result
+//Transform method
+int Transform(string A, string B){
+    //check the length of string 
+    //it must be same for tranformation
+    if(A.length() != B.length()){
+        return -1;
+    }
+    
+    //use unordered_map to store the Frequency of charecters
+    
+    unordered_map<char, int> umap;
+    int N = A.length();
+    
+    //For loop to traverse
+    for(int i=0; i<N; i++){
+        if(umap.count(A[i])){
+            //if exist then increment
+            umap[A[i]]++;
+        }else{
+            //the Frequency will be 1 only
+            umap[A[i]] = 1;
+        }
+    }//end of loop
+    
+    
+    //Now check the Frequency of string B 
+    //if the Frequency is more than 1 then decrement
+    
+    for(int i=0; i<N; i++){
+        if(umap.count(B[i])){
+            umap[B[i]]--;
+        }
+    }
+    
+    //here Frequency must be zero
+    //otherwise tranformation is not possible
+    for(auto ele:umap){
+        if(ele.second != 0){
+            return -1;
+        }
+    }
+    
+    
+    //now at the end calculate the minimum no of operations
+    //required for tranformation
+    
+    int i = N-1, j = N-1;
+    int result = 0;
+    
+    while(i >= 0 && j>= 0){
+        while(i >= 0 && A[i] != B[j]){
+            result++;
+            i--;
+        }
+        i--;
+        j--;
+    }
+    
+    //retrun result
+    return result;
 }
-
-// Driver code
-int main()
-{
-	string A = "EACBD";
-	string B = "EABCD";
-
-	cout << "Minimum number of operations required is " << transform(A, B) << endl;
-	return 0;
+int main(){
+    
+    string str1 = "EACBD";
+    string str2 = "EABCD";
+    cout<<"Minimum operationd for transformation - "<<Transform(str1, str2);
+    return 0;
 }
